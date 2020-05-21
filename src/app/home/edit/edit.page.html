@@ -1,0 +1,58 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start" *ngIf="menuButton">
+      <ion-menu-button ></ion-menu-button>     
+    </ion-buttons>
+    <ion-buttons slot="start" *ngIf="backButton">
+      <ion-back-button ></ion-back-button>
+    </ion-buttons>
+    <ion-title>{{ tituloBarra }}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+<ion-card>
+  <ion-card-header>Nuevo</ion-card-header>
+  <ion-card-content>
+
+    <form #testForm="ngForm">
+
+      <ion-item>
+        <ion-label position="stacked">Titulo</ion-label>
+        <ion-input [(ngModel)]="agenda.titulo" name="titulo" #titulo="ngModel"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="stacked">Fecha inicio</ion-label>
+        <ion-datetime [(ngModel)]="agenda.iniciaDia" name="iniciaDia" #iniciaDia="ngModel"></ion-datetime>
+      </ion-item>
+
+
+      <ion-item>
+        <ion-label position="stacked">Hora Inicio</ion-label>
+        <ion-datetime display-format="h:mm A" picker-format="h:mm A" [(ngModel)]="agenda.iniciaHora" name="iniciaHora" #iniciaHora="ngModel"></ion-datetime>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="stacked">Fecha Termino</ion-label>
+        <ion-datetime [(ngModel)]="agenda.finalizaDia" name="finalizaDia" #finalizaDia="ngModel"></ion-datetime>
+      </ion-item>
+
+
+      <ion-item>
+        <ion-label position="stacked">Hora Termino</ion-label>
+        <ion-datetime display-format="h:mm A" picker-format="h:mm A" [(ngModel)]="agenda.finalizaHora" name="finalizaHora" #finalizaHora="ngModel"></ion-datetime>
+      </ion-item>
+
+      <ion-button (click)='create()' expand="full" color="primary" *ngIf="!agenda._id else elseBlock" >Guardar</ion-button>
+      <ng-template #elseBlock>
+        <ion-button expand="full" color="primary"   role="button" (click)='update(agenda._id, agenda)'>Editar</ion-button >
+      </ng-template>
+    </form>
+
+  </ion-card-content>
+</ion-card>
+
+
+</ion-content>
